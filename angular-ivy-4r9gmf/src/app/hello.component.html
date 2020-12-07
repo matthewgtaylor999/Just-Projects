@@ -1,0 +1,63 @@
+<div id="heading">
+  <h1>Sign Up Form</h1>
+</div>
+
+
+<form [formGroup]="profile">
+  <label>
+    <div *ngIf='name.invalid && (name.touched)'>
+      <div class="alert alert-danger" *ngIf="name.errors.required">
+        Name<br>
+        Name is Required
+      </div>
+
+      <div *ngIf='name.errors.minlength'>
+        Name<br>
+        Minimum Length is {{name.errors.minlength.requiredLength}} characters
+      </div>
+    </div>
+
+    Name:
+    <input type="text" formControlName="name" placeholder="Name"/>
+  </label>
+<br>
+  <label>
+    <div *ngIf="age.invalid && (age.touched)">
+        <div *ngIf="age.errors.age">
+          Age:<br>
+          Must be 21 or up to enter.
+        </div>  
+    </div>
+    Age:
+    <input type="text" formControlName="age" placeholder="Age"/>
+  </label>
+
+<br>
+  <div formGroupName="address">
+    <label>
+      Street:
+      <input type="text" formControlName="street" />
+    </label>
+<br>
+    <label>
+      City:
+      <input type="text" formControlName="city" />
+    </label>
+<br>
+    <label>
+      Country:
+      <input type="text" formControlName="country" />
+    </label>
+  </div>
+  <Br>
+  
+<div id=formSubmit>
+  <button id="submit" type="submit" [disabled]="!profile.valid">Submit Application</button>
+  <em>Current Form Status:</em> {{profile.status}}
+ </div> 
+</form>
+
+<div id="bottomButtons">
+<button id="print" (click)="printValues()">Console Print</button>
+<button id="reset" (click)="reset()">Reset Form Fields</button>
+</div>
